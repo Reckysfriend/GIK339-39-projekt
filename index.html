@@ -3,15 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="#" />
     <title>Document</title>
   </head>
-  <body>
-    <form>
-      <label for="Test">Test:</label><br />
-      <input type="text" id="test" name="test" /><br />
+  <body class="bg-blue-800">
+    <h1 class="text-5xl col-span-5 text-center text-white">
+      Group 39 Review Emporium
+    </h1>
+    <div class="grid grid-cols-5">
+      <div class="bg-blue-500 col-span-3">
+        <h2 class="text-3xl text-center text-white">Review Form</h2>
+        <div class="w-[55rem] mx-auto mt-8 bg-white/25 p-3 rounded-lg">
+          <form>
+            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
+              <label for="title">Title</label>
+              <input type="text" id="formInputTitle" name="title" />
+            </div>
+            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
+              <label for="reviewer">Reviewer</label>
+              <input type="text" id="formInputReviewer" name="reviewer" />
+            </div>
+            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
+              <label for="rating">Rating</label>
+              <input type="text" id="formInputRating" name="reviewer" />
+            </div>
+            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
+              <label for="rating">Genre #1</label>
+              <input type="text" id="formInputGenre1" name="genre1" />
+            </div>
+            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
+              <label for="rating">Genre #2</label>
+              <input type="text" id="formInputGenre2" name="genre2" />
+            </div>
+            <div>
+              <textarea name="comment" rows="5" cols="20" maxlength="100">
+Write your review here....(Max 100 characters)</textarea
+              >
+            </div>
+          </form>
+        </div>
 
-      <label for="Test">Submit</label><br />
-      <input type="button" id="button" name="button" />
-    </form>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded min-w-1/2"
+        >
+          Test
+        </button>
+      </div>
+      <div class="bg-green-500 col-span-2">
+        <h2 class="text-3xl text-center text-white">Review List</h2>
+        <ul class="my-3 flex flex-wrap gap-2 justify-center">
+          <li
+            class="bg-red-500 p-2 rounded-md border-2 flex flex-col justify-between"
+          >
+            Test Data 1
+          </li>
+          <li
+            class="bg-red-500 p-2 rounded-md border-2 flex flex-col justify-between"
+          >
+            Test Data 2
+          </li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
