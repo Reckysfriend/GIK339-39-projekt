@@ -15,7 +15,9 @@
     "express": "^5.2.1",
     "sqlite3": "^5.1.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "tailwindcss": "^4.1.18"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Reckysfriend/GIK339-39-projekt.git"

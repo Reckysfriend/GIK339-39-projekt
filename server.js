@@ -43,7 +43,7 @@ server.get("/reviews/:id", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.send(rows[0]);
+      res.json(rows[0]);
     }
   });
 });
@@ -59,7 +59,7 @@ server.post("/reviews", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.send(`Your review of ${review.title} has been saved`);
+      res.send(`Your review of ${review.title} has been added!`);
     }
   });
 });
@@ -92,7 +92,7 @@ server.put("/reviews", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.send(`Your review of ${review.Title} has been updated`);
+      res.send(`Your review of ${review.Title} has been updated!`);
     }
   });
 });
@@ -101,13 +101,15 @@ server.put("/reviews", (req, res) => {
 server.delete("/reviews/:id", (req, res) => {
   const id = req.params.id;
 
-  const sql = `DELETE FROM reviews WHERE id = ${id}`;
-
-  db.run(sql, (err) => {
+  db.all(`SELECT * FROM reviews WHERE id=${id}`, (err, row) => {
     if (err) {
       res.status(500).send(err);
-    } else {
-      res.send(`Your review has been deleted`);
     }
+    db.run(`DELETE FROM reviews WHERE id = ${id}`, (err) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+    });
+    res.json(row);
   });
 });

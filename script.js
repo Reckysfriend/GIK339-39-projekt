@@ -46,17 +46,18 @@ function fetchData() {
             <hr />
             <div class="grid-cols-2 grid-rows-2 text-center px-10">
               <button type="button"
-                class="bg-blue-300 border-red-500 hover:bg-blue-700 text-white font-bold m-2 py-1 px-2 border border-blue-700 rounded min-w-1/2 justify-self-center"
+                class="${buttonColor} ${colorBorder} hover:${hoverColor} text-white font-bold m-2 py-1 px-2 border border-blue-700 rounded min-w-1/2 justify-self-center"
                 onclick="setCurrentReview(${review.id})"
               >
                 Edit
               </button>
               <button type="button"
-                class="bg-blue-300 border-red-500 hover:bg-blue-700 text-white font-bold m-2 py-1 px-2 border border-blue-700 rounded min-w-1/2"
+                class="${buttonColor} ${colorBorder} hover:${hoverColor} text-white font-bold m-2 py-1 px-2 border border-blue-700 rounded min-w-1/2"
                 onclick="deleteReview(${review.id})"
               >
                 Delete
               </button>
+              <div id="default-modal" tabindex="-1" aria-hidden="true"/div>
             </div>
           </li>`;
         });
@@ -87,20 +88,18 @@ function setCurrentReview(id) {
 }
 
 function deleteReview(id) {
-  console.log("delete", id);
-  fetch(`${url}/${id}`, { method: "DELETE" }).then((result) => {
-    showNotification("Your review has been deleted!", "delete");
-    setTimeout(() => {
+  console.log("BEFORE");
+  fetch(`${url}/${id}`, { method: "DELETE" })
+    .then((res) => res.json())
+    .then((deletedReview) => {
+      showModal(`You have deleted your review of ${deletedReview[0].title}`);
       fetchData();
-    }, 10000);
-  });
+      console.log("AFTER");
+    });
 }
 
-const reviewForm = document.getElementById("reviewForm");
-reviewForm.addEventListener("submit", handleSumbit);
-
 function handleSumbit(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   const serverObject = {
     title: "",
     reviewer: "",
@@ -129,11 +128,14 @@ function handleSumbit(e) {
     body: JSON.stringify(serverObject),
   });
 
-  fetch(request).then((response) => {
-    fetchData();
-    localStorage.removeItem("currentID");
-    reviewForm.reset();
-  });
+  fetch(request)
+    .then((res) => res.text())
+    .then((message) => {
+      showModal(message);
+      fetchData();
+      localStorage.removeItem("currentID");
+      reviewForm.reset();
+    });
 }
 
 function clearForm() {
@@ -144,16 +146,12 @@ function clearForm() {
   reviewForm.genre2.value = "";
   reviewForm.comment.value = "";
 }
-function showNotification(message, type = "success") {
-  const note = document.getElementById("notification");
 
-  note.textContent = message;
-  note.className = `fixed top-5 right-5 px-6 py-3 rounded shadow-lg text-white
-    ${type === "delete" ? "bg-red-500" : "bg-green-500"}`;
+function showModal(message) {
+  document.getElementById("modalText").innerText = message;
+  document.getElementById("simpleModal").classList.remove("hidden");
+}
 
-  note.classList.remove("hidden");
-
-  setTimeout(() => {
-    note.classList.add("hidden");
-  }, 100000);
+function closeModal() {
+  document.getElementById("simpleModal").classList.add("hidden");
 }
