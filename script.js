@@ -57,7 +57,6 @@ function fetchData() {
               >
                 Delete
               </button>
-              <div id="default-modal" tabindex="-1" aria-hidden="true"/div>
             </div>
           </li>`;
         });
@@ -98,8 +97,10 @@ function deleteReview(id) {
     });
 }
 
+reviewForm.addEventListener("submit", handleSubmit);
+
 function handleSumbit(e) {
-  if (e) e.preventDefault();
+  e.preventDefault();
   const serverObject = {
     title: "",
     reviewer: "",
