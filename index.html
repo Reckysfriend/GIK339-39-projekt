@@ -7,86 +7,131 @@
     <link rel="shortcut icon" href="#" />
     <title>Document</title>
   </head>
-  <body class="bg-blue-800">
+  <body class="bg-blue-500 max-h-screen">
+    <div
+      id="notification"
+      class="hidden fixed top-5 right-5 bg-green-500 text-white px-6 py-3 rounded shadow-lg transition-opacity duration-500"
+    ></div>
     <h1 class="text-5xl col-span-5 text-center text-white">
       Group 39 Review Emporium
     </h1>
-    <div class="grid grid-cols-5">
-      <div class="bg-blue-500 col-span-3">
+    <div class="grid grid-cols-5 max-h-screen">
+      <div class="col-span-3">
         <h2 class="text-3xl text-center text-white">Review Form</h2>
-        <div class="w-[55rem] mx-auto mt-8 bg-white/25 p-3 rounded-lg">
-          <form>
-            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-              <label for="title">Title</label>
-              <input type="text" id="formInputTitle" name="title" />
+        <div
+          class="w-full max-w-100 justify-center mx-auto mt-8 bg-white/25 p-3 rounded-lg flex flex-wrap -mx-3 mb-6"
+        >
+          <form class="w-full max-w-lg" id="reviewForm">
+            <div class="">
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="title"
+                >Title</label
+              >
+              <input
+                class="w-full rounded py-1 px-4 mb-2"
+                type="text"
+                id="formInputTitle"
+                name="title"
+                placeholder="Jurassic Park"
+              />
             </div>
-            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-              <label for="reviewer">Reviewer</label>
-              <input type="text" id="formInputReviewer" name="reviewer" />
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="reviewer"
+                  >Reviewer</label
+                >
+                <input
+                  class="w-full rounded py-1 px-4 mb-2"
+                  type="text"
+                  id="formInputReviewer"
+                  name="reviewer"
+                  placeholder="Linus Öhrn"
+                />
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="rating"
+                  >Rating</label
+                >
+                <input
+                  class="w-full rounded py-1 px-4 mb-2"
+                  type="text"
+                  id="formInputRating"
+                  name="rating"
+                  placeholder="7/10"
+                />
+              </div>
             </div>
-            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-              <label for="rating">Rating</label>
-              <input type="text" id="formInputRating" name="reviewer" />
-            </div>
-            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-              <label for="rating">Genre #1</label>
-              <input type="text" id="formInputGenre1" name="genre1" />
-            </div>
-            <div class="form-control my-4 mx-auto flex w-3/4 items-center">
-              <label for="rating">Genre #2</label>
-              <input type="text" id="formInputGenre2" name="genre2" />
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="genre1"
+                  >Genre #1</label
+                >
+                <input
+                  class="w-full rounded py-1 px-4 mb-2"
+                  type="text"
+                  id="formInputGenre1"
+                  name="genre1"
+                  placeholder="Thriller"
+                />
+              </div>
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="genre2"
+                  >Genre #2</label
+                >
+                <input
+                  class="w-full rounded py-1 px-4 mb-2"
+                  type="text"
+                  id="formInputGenre2"
+                  name="genre2"
+                  placeholder="Adventure"
+                />
+              </div>
             </div>
             <div>
-              <textarea name="comment" rows="5" cols="20" maxlength="100">
-Write your review here....(Max 100 characters)</textarea
+              <label
+                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                for="rating"
+                >Comment</label
               >
+              <textarea
+                class="w-full p-2"
+                name="comment"
+                rows="2"
+                cols="50"
+                maxlength="100"
+                placeholder="Write your review here....(Max 100 characters)"
+              ></textarea>
+            </div>
+            <div class="items-center flex">
+              <button
+                type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold m-3 py-2 px-4 border border-blue-700 rounded min-w-1/2 justify-self-center"
+              >
+                Submit
+              </button>
+              <button
+                type="reset"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold m-3 py-2 px-4 border border-blue-700 rounded min-w-1/2 justify-self-center"
+                onclick="clearForm()"
+              >
+                Clear
+              </button>
             </div>
           </form>
         </div>
-
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded min-w-1/2"
-        >
-          Test
-        </button>
-        <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded min-w-1/2"
-        >
-          Submit
-        </button>
       </div>
-      <div class="bg-green-500 col-span-2">
+      <div class="col-span-2 overflow-auto max-h-screen">
         <h2 class="text-3xl text-center text-white">Review List</h2>
-        <ul class="my-3 flex flex-wrap gap-2 justify-center">
-          <li
-            class="bg-red-500 p-2 rounded-md border-2 flex flex-col justify-between"
-          >
-            Test Data 1
-          </li>
-          <li
-            class="bg-red-500 p-2 rounded-md border-2 flex flex-col justify-between"
-          >
-            Test Data 2
-          </li>
-        </ul>
-        <div id="listContainer">
-          <ul class="w-3/4 my-3 mx-auto flex flex-wrap gap-2 justify-center">
-            <li
-              class="bg-green-200 basis-1/4 text-green-900 p-2 rounded-md border-2 border-green-400 flex flex-col justify-between"
-            >
-              <div>
-                <button
-                  class="rounded-md bg-white/50 p-1 text-sm"
-                  <button
-                  class="border border-green-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2"
-                ></button>
-                <button
-                  class="border border-green-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2"
-                ></button>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <div id="listContainer" class="overflow-auto m-5"></div>
       </div>
     </div>
     <script src="script.js"></script>

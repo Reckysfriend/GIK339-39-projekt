@@ -11,11 +11,9 @@ server
   /* Sättet som data ska kodas och avkodas på */
   .use(express.urlencoded({ extended: false }))
   .use((req, res, next) => {
-    /* Headers för alla förfrågningar. Hanterar regler för CORS (vilka klienter som får anropa vår server och hur.) */
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "*");
     res.header("Access-Control-Allow-Methods", "*");
-    /* Säger åt servern att fortsätta processa förfrågan */
     next();
   });
 
@@ -109,7 +107,7 @@ server.delete("/reviews/:id", (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.send(`Your review of ${review.title} has been deleted`);
+      res.send(`Your review has been deleted`);
     }
   });
 });
